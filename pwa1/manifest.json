@@ -1,0 +1,20 @@
+{
+  "name": "Simple PWA",
+  "short_name": "PWA",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "icons": [
+    {
+      "src": "icons/rvde.jpg",
+      "sizes": "512*512",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "icons/i.jpg",
+      "sizes": "512*512",
+      "type": "image/jpeg"
+    }
+  ]
+}
