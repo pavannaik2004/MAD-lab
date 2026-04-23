@@ -7,14 +7,14 @@
   "theme_color": "#4CAF50",
   "icons": [
     {
-      "src": "icons/rvde.jpg",
+      "src": "icons/rvde.png",
       "sizes": "512*512",
-      "type": "image/jpeg"
+      "type": "image/png"
     },
     {
-      "src": "icons/i.jpg",
+      "src": "icons/i.png",
       "sizes": "512*512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }
