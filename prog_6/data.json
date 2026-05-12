@@ -1,0 +1,23 @@
+[
+  {
+    "company": "3M",
+    "description": "3M produces medical products, adhesives, stationery products and industrial products.",
+    "initial_price": 44.28,
+    "price_2007": 95.85,
+    "symbol": "MMM"
+  },
+  {
+    "company": "Amazon.com",
+    "description": "Amazon is an online retailer and cloud computing company.",
+    "initial_price": 89.38,
+    "price_2007": 93.43,
+    "symbol": "AMZN"
+  },
+  {
+    "company": "Apple",
+    "description": "Apple designs and manufactures consumer electronics and software products.",
+    "initial_price": 22.5,
+    "price_2007": 180.05,
+    "symbol": "AAPL"
+  }
+]

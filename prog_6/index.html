@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Stock Display PWA</title>
+
+    <link rel="manifest" href="manifest.json" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: auto;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 12px;
+      }
+
+      th {
+        background-color: #00cc00;
+        color: white;
+      }
+
+      img {
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Stock Market Data Display</h1>
+
+    <img src="assets/logo.png" alt="Logo" />
+
+    <div id="stock"></div>
+
+    <script>
+      // Register Service Worker
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(() => {
+            console.log("Service Worker Registered");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("Browser does not support Service Worker");
+      }
+
+      // Fetch JSON Data
+
+      fetch("data.json")
+        .then((res) => {
+          return res.json();
+        })
+        .then((stock) => {
+          let table = `
+                <table>
+                    <tr>
+                        <th>Company</th>
+                        <th>Description</th>
+                        <th>Initial Price</th>
+                        <th>Price in 2007</th>
+                        <th>Symbol</th>
+                    </tr>
+            `;
+
+          for (let item of stock) {
+            table += `
+                    <tr>
+                        <td>${item.company}</td>
+                        <td>${item.description}</td>
+                        <td>${item.initial_price}</td>
+                        <td>${item.price_2007}</td>
+                        <td>${item.symbol}</td>
+                    </tr>
+                `;
+          }
+
+          table += "</table>";
+
+          document.getElementById("stock").innerHTML = table;
+        });
+    </script>
+  </body>
+</html>

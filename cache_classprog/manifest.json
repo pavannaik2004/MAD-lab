@@ -1,0 +1,31 @@
+{
+  "name": "manifestation",
+  "short_name": "manifest",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "background_color": "#ffff00",
+  "description": "A simple applicationfor manifestation",
+  "orientation": "landscape",
+  "theme_color": "red",
+  "icons": [
+    {
+      "src": "./icons/rvce_logo.png",
+      "sizes": "225x225",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./icons/image.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./icons/image_wide.png",
+      "sizes": "700x468",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
