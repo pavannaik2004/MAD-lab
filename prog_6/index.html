@@ -28,7 +28,7 @@
       }
 
       th {
-        background-color: #00cc00;
+        background-color: #858585;
         color: white;
       }
 
@@ -46,8 +46,6 @@
     <div id="stock"></div>
 
     <script>
-      // Register Service Worker
-
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .register("sw.js")
@@ -61,8 +59,6 @@
         console.log("Browser does not support Service Worker");
       }
 
-      // Fetch JSON Data
-
       fetch("data.json")
         .then((res) => {
           return res.json();
@@ -72,10 +68,8 @@
                 <table>
                     <tr>
                         <th>Company</th>
-                        <th>Description</th>
-                        <th>Initial Price</th>
-                        <th>Price in 2007</th>
-                        <th>Symbol</th>
+                        <th>Price</th>
+                        <th>Logo</th>
                     </tr>
             `;
 
@@ -83,10 +77,8 @@
             table += `
                     <tr>
                         <td>${item.company}</td>
-                        <td>${item.description}</td>
-                        <td>${item.initial_price}</td>
-                        <td>${item.price_2007}</td>
-                        <td>${item.symbol}</td>
+                        <td>${item.price}</td>
+                        <td><img src="${item.logo}" alt="${item.name} logo"></td>
                     </tr>
                 `;
           }
