@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Stock Display PWA</title>
+
+    <link rel="manifest" href="manifest.json" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: auto;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 12px;
+      }
+
+      th {
+        background-color: #858585;
+        color: white;
+      }
+
+      img {
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      // Check if user is authenticated
+      if (localStorage.getItem("isAuthenticated") !== "true") {
+        // User not authenticated, redirect to login
+        window.location.href = "index.html";
+      }
+    </script>
+    <h1>Stock Market Data Display</h1>
+
+    <img src="assets/logo.png" alt="Logo" />
+
+    <div id="stock"></div>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(() => {
+            console.log("Service Worker Registered");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("Browser does not support Service Worker");
+      }
+
+      // COMMENTED: Local data.json fetch
+      // fetch("data.json")
+      //   .then((res) => {
+      //     return res.json();
+      //   })
+      //   .then((stock) => {
+      //     displayStock(stock);
+      //   });
+
+      // Fetch from GitHub - Using raw.githubusercontent.com for correct JSON fetch
+      const githubDataUrl =
+        "https://raw.githubusercontent.com/pavannaik2004/MAD-lab/main/prog_6/data.json";
+
+      fetch(githubDataUrl)
+        .then((res) => {
+          return res.json();
+        })
+        .then((stock) => {
+          displayStock(stock);
+        })
+        .catch((err) => {
+          console.log("Error fetching from GitHub:", err);
+          document.getElementById("stock").innerHTML =
+            "<p style='color: red;'>Failed to fetch stock data. Check GitHub URL configuration.</p>";
+        });
+
+      function displayStock(stock) {
+        let table = `
+              <table>
+                  <tr>
+                      <th>Company</th>
+                      <th>Price</th>
+                      <th>Logo</th>
+                  </tr>
+          `;
+
+        for (let item of stock) {
+          table += `
+                  <tr>
+                      <td>${item.company}</td>
+                      <td>${item.price}</td>
+                      <td><img src="${item.logo}" alt="${item.name} logo"></td>
+                  </tr>
+              `;
+        }
+
+        table += "</table>";
+
+        document.getElementById("stock").innerHTML = table;
+      }
+    </script>
+  </body>
+</html>
