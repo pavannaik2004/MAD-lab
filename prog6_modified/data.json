@@ -1,0 +1,17 @@
+[
+  {
+    "company": "Apple",
+    "price": "$123",
+    "logo": "./assets/apple.png"
+  },
+  {
+    "company": "AMD",
+    "price": "$34",
+    "logo": "./assets/amd.png"
+  },
+  {
+    "company": "Alphabet",
+    "price": "$533",
+    "logo": "./assets/alphabet.png"
+  }
+]

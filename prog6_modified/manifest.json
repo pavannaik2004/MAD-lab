@@ -1,0 +1,23 @@
+{
+  "name": "Stock Display",
+  "short_name": "Stock-Display",
+  "display": "standalone",
+  "start_url": "index.html",
+  "description": "Display stock from json file",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "background_color": "#00AA00",
+  "theme_color": "#00CC00"
+}
