@@ -1,18 +1,19 @@
-const notifyBtn = document.getElementById("notifyBtn");
+const permissionBtn = document.getElementById("permissionBtn");
 
-notifyBtn.addEventListener("click", async () => {
-  // Ask permission
+permissionBtn.addEventListener("click", async () => {
+  // Current permission before request
+  console.log(Notification.permission);
 
   const permission = await Notification.requestPermission();
 
-  // If allowed
+  // Permission after user action
+  console.log(permission);
 
   if (permission === "granted") {
-    new Notification("Hello!", {
-      body: "This is my first notification.",
-      //   icon: "https://cdn-icons-png.flaticon.com/512/1827/1827392.png"
-    });
+    alert("Permission Granted");
+  } else if (permission === "denied") {
+    alert("Permission Denied");
   } else {
-    alert("Notification permission denied");
+    alert("Permission Closed");
   }
 });
