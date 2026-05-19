@@ -22,23 +22,6 @@ self.addEventListener("install", (e) => {
 
 self.addEventListener("activate", (e) => {
   console.log("Service Worker Activated");
-
-  e.waitUntil(
-    caches
-      .keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((name) => {
-            if (name !== CACHE_NAME) {
-              console.log("Deleting old cache:", name);
-              return caches.delete(name);
-            }
-            return Promise.resolve();
-          }),
-        );
-      })
-      .then(() => self.clients.claim()),
-  );
 });
 
 self.addEventListener("fetch", (e) => {
