@@ -3,13 +3,130 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Notification Demos</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-    <title>Request Permission</title>
+      body {
+        margin: 0;
+        padding: 24px;
+        background: #f6f8fc;
+        color: #1f2937;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+      }
+
+      p {
+        margin-top: 0;
+        color: #4b5563;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin-top: 24px;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid #dbe3f0;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      }
+
+      .card h2 {
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+
+      button {
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        margin-top: 8px;
+        background: #2563eb;
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      .status {
+        margin-top: 20px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: #e8f0ff;
+        color: #1d4ed8;
+        min-height: 20px;
+      }
+
+      code {
+        background: #eef2ff;
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Notification Permission</h1>
+    <div class="container">
+      <h1>Web Notification Demos</h1>
+      <p>
+        This page combines all the notification examples in one place. Open it
+        in a browser that supports Web Notifications.
+      </p>
 
-    <button id="permissionBtn">Request Permission</button>
+      <div class="grid">
+        <section class="card">
+          <h2>1. Simple Notification</h2>
+          <p>Requests permission and shows a basic notification if allowed.</p>
+          <button id="notifyBtn">Show Notification</button>
+        </section>
+
+        <section class="card">
+          <h2>2. Request Permission</h2>
+          <p>Only asks for permission and reports the result.</p>
+          <button id="permissionBtn">Request Permission</button>
+        </section>
+
+        <section class="card">
+          <h2>3. Request & Notify</h2>
+          <p>Requests permission first, then sends a notification.</p>
+          <button id="requestNotifyBtn">Request & Notify</button>
+        </section>
+
+        <section class="card">
+          <h2>4. Tagged Notification</h2>
+          <p>
+            Sends two notifications with the same tag so the second replaces the
+            first.
+          </p>
+          <button id="tagBtn">Request & Send Tagged Notification</button>
+        </section>
+
+        <section class="card">
+          <h2>5. Service Worker Notification</h2>
+          <p>Uses a service worker to show notifications.</p>
+          <button id="swBtn">Request & Show via Service Worker</button>
+        </section>
+      </div>
+
+      <div id="status" class="status">Status messages will appear here.</div>
+    </div>
 
     <script src="app.js"></script>
   </body>
