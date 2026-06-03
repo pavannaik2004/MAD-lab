@@ -7,34 +7,17 @@ import 'package:flutter/services.dart';
 // it to the screen. We pass our top-level `MyApp` widget here.
 void main() => runApp(const MyApp());
 
-// `MyApp` is a lightweight container for app-wide configuration.
-// It returns a `MaterialApp` which provides Material Design
-// theming, navigation, and other features.
-class MyApp extends StatelessWidget {
+// `MyApp` owns the whole demo screen, including the form state.
+// Using a stateful root widget lets us keep the controllers and
+// dispose of them correctly without needing a separate page class.
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      // Remove the debug banner shown in the top-right corner.
-      debugShowCheckedModeBanner: false,
-      // Set the home screen to our demo page.
-      home: DemoPage(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-// Stateful widget because we need to persist text entered into
-// multiple TextFields. The mutable state (controllers, values)
-// lives in `_DemoPageState`.
-class DemoPage extends StatefulWidget {
-  const DemoPage({super.key});
-
-  @override
-  State<DemoPage> createState() => _DemoPageState();
-}
-
-class _DemoPageState extends State<DemoPage> {
+class _MyAppState extends State<MyApp> {
   // TextEditingController objects keep track of the current value
   // in a TextField. Use one controller per field so we can read
   // all values when the user submits the form.
@@ -84,10 +67,17 @@ class _DemoPageState extends State<DemoPage> {
         title: const Text('Submitted values'),
         content: SingleChildScrollView(
           child: ListBody(
-            children: values.entries.map((e) => Text('${e.key}: ${e.value}')).toList(),
+            children: values.entries
+                .map((e) => Text('${e.key}: ${e.value}'))
+                .toList(),
           ),
         ),
-        actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('OK'))],
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }
@@ -107,60 +97,88 @@ class _DemoPageState extends State<DemoPage> {
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       obscureText: obscure,
-      decoration: InputDecoration(labelText: label, hintText: hint, border: const OutlineInputBorder()),
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+        border: const OutlineInputBorder(),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('TextField Demo')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Heading for the demo
-              const Text('Flutter TextField examples', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 12),
+    return MaterialApp(
+      // Remove the debug banner shown in the top-right corner.
+      debugShowCheckedModeBanner: false,
+      // Build the full screen directly here instead of using a
+      // separate DemoPage widget.
+      home: Scaffold(
+        appBar: AppBar(title: const Text('TextField Demo')),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Heading for the demo
+                const Text(
+                  'Flutter TextField examples',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 12),
 
-              // NAME: block digits so the user's name contains only
-              // letters and punctuation (no numbers).
-              _buildField(
-                controller: nameController,
-                label: 'Name',
-                hint: 'No digits allowed',
-                inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'[0-9]'))],
-              ),
-              const SizedBox(height: 12),
+                // NAME: block digits so the user's name contains only
+                // letters and punctuation (no numbers).
+                _buildField(
+                  controller: nameController,
+                  label: 'Name',
+                  hint: 'No digits allowed',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'[0-9]')),
+                  ],
+                ),
+                const SizedBox(height: 12),
 
-              // EMAIL: present an email-optimized keyboard on mobile devices.
-              _buildField(controller: emailController, label: 'Email', hint: 'Type an email', keyboardType: TextInputType.emailAddress),
-              const SizedBox(height: 12),
+                // EMAIL: present an email-optimized keyboard on mobile devices.
+                _buildField(
+                  controller: emailController,
+                  label: 'Email',
+                  hint: 'Type an email',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 12),
 
-              // AGE: numeric keyboard and input formatters. Here it allows
-              // digits and limits maximum length. The runtime check in
-              // `_submit()` ensures the value is below 100.
-              _buildField(
-                controller: ageController,
-                label: 'Age',
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), LengthLimitingTextInputFormatter(3)],
-              ),
-              const SizedBox(height: 12),
+                // AGE: numeric keyboard and input formatters. Here it allows
+                // digits and limits maximum length. The runtime check in
+                // `_submit()` ensures the value is below 100.
+                _buildField(
+                  controller: ageController,
+                  label: 'Age',
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    LengthLimitingTextInputFormatter(3),
+                  ],
+                ),
+                const SizedBox(height: 12),
 
-              // PASSWORD: hides the typed characters for privacy.
-              _buildField(controller: passwordController, label: 'Password', hint: 'Hidden', obscure: true),
-              const SizedBox(height: 8),
+                // PASSWORD: hides the typed characters for privacy.
+                _buildField(
+                  controller: passwordController,
+                  label: 'Password',
+                  hint: 'Hidden',
+                  obscure: true,
+                ),
+                const SizedBox(height: 8),
 
-              // (Other fields removed to keep this demo compact.)
-              const SizedBox(height: 16),
+                // (Other fields removed to keep this demo compact.)
+                const SizedBox(height: 16),
 
-              // Submit button triggers validation and displays entered values.
-              ElevatedButton(onPressed: _submit, child: const Text('Submit')),
-              const SizedBox(height: 16),
-            ],
+                // Submit button triggers validation and displays entered values.
+                ElevatedButton(onPressed: _submit, child: const Text('Submit')),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),
