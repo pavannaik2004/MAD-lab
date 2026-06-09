@@ -1,0 +1,210 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RV Institutions | Secure Session Monitor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0b1e3d;
+        --bg-gradient: linear-gradient(135deg, #0b1e3d 0%, #102a54 100%);
+        --panel: #132e5b;
+        --panel-2: #17376d;
+        --accent: #3ea6ff;
+        --accent-soft: rgba(62, 166, 255, 0.15);
+        --danger: #ff6b6b;
+        --text: #f4f7fb;
+        --muted: #a8c1e8;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        background: var(--bg-gradient);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      /* Container */
+      .soc-container {
+        width: 100%;
+        max-width: 540px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(62, 166, 255, 0.15);
+        overflow: hidden;
+      }
+      /* Header */
+      .soc-header {
+        background: var(--panel-2);
+        padding: 22px;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+      .logo {
+        height: 50px;
+        background: url(/XX/YY/ZZ/CI/CHGHDGFG) no-repeat center;
+        background-size: contain;
+        margin-bottom: 10px;
+        filter: brightness(1.1);
+      }
+      .soc-header h1 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      .soc-header span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      /* Body */
+      .soc-body {
+        padding: 30px;
+        text-align: center;
+      }
+      /* Status */
+      .status-indicator {
+        display: inline-block;
+        background: var(--accent-soft);
+        color: var(--accent);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-bottom: 20px;
+        border: 1px solid var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+      /* Countdown */
+      .countdown-panel {
+        background: #0f254a;
+        border: 1px solid var(--border);
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .countdown-label {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .countdown-number {
+        font-size: 42px;
+        font-weight: 600;
+        color: var(--accent);
+        text-shadow: 0 0 15px rgba(62, 166, 255, 0.5);
+        transition: color 0.3s ease;
+      }
+      /* Links */
+      .links {
+        margin-top: 15px;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 13px;
+        margin: 0 10px;
+        font-weight: 500;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      /* Warning */
+      .warning {
+        margin-top: 18px;
+        font-size: 12px;
+        color: var(--danger);
+      }
+      /* Quota */
+      .quota {
+        margin-top: 20px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      /* Footer */
+      .soc-footer {
+        border-top: 1px solid var(--border);
+        padding: 14px;
+        font-size: 11px;
+        text-align: center;
+        color: var(--muted);
+      }
+    </style>
+    <link type="text/css" rel="stylesheet" id="dark-mode-custom-link" />
+    <link type="text/css" rel="stylesheet" id="dark-mode-general-link" />
+    <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+    <style lang="en" type="text/css" id="dark-mode-native-style"></style>
+    <style lang="en" type="text/css" id="dark-mode-native-sheet"></style>
+    <style type="text/css" id="mytempCss">
+      ._8mqQwQ {
+        display: none;
+      }
+      ._1TWLMK.icF5zO {
+        opacity: 0.01;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="soc-container">
+      <div class="soc-header">
+        <div class="logo"></div>
+        <h1>RV INSTITUTIONS</h1>
+        <span
+          >Secure Operations Center • Session Monitor. Do not close this
+          page</span
+        >
+      </div>
+      <div class="soc-body">
+        <div class="status-indicator">● SESSION ACTIVE</div>
+        <div class="countdown-panel">
+          <div class="countdown-label">Authentication refresh cycle</div>
+          <div class="countdown-number" id="countdown">1848</div>
+          <div class="countdown-label">seconds remaining</div>
+        </div>
+        <div class="links">
+          <a href="http://www.msftconnecttest.com/redirect" target="_blank"
+            >Open Network Window</a
+          >
+          |
+          <a href="https://172.16.0.2:1003/logout?05020205090d040e"
+            >Terminate Session</a
+          >
+        </div>
+        <div class="warning">
+          Unauthorized credential sharing is prohibited and monitored.
+        </div>
+        <div class="quota"></div>
+      </div>
+      <div class="soc-footer">
+        © 2026 RV Institutions • IT Security &amp; Network Operations<br />
+        All activity is logged and subject to institutional policy.
+      </div>
+    </div>
+    <script>
+      var countDownTime = parseInt("2400", 10) || 0;
+      function countDown() {
+        countDownTime--;
+        if (countDownTime <= 0) {
+          location.href = "https://172.16.0.2:1003/keepalive?05020205090d040e";
+          return;
+        }
+        if (countDownTime <= 10) {
+          document.getElementById("countdown").style.color = "#ff6b6b";
+        }
+        document.getElementById("countdown").innerHTML = countDownTime;
+        setTimeout(countDown, 1000);
+      }
+      window.onload = countDown;
+    </script>
+  </body>
+</html>
